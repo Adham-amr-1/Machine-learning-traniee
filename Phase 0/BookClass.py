@@ -12,7 +12,7 @@ class book:
         book.books+=1
     def __str__(self):
         return f"{self.copies} , {self.id} , {self.book_name} , {self.author_name}"
-    def get_numberofbookexist(self):
+    def get_numberofbookexist():
         return book.books
 # -----------------------------------------------------------------------
 # Functions |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
