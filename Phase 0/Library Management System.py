@@ -95,7 +95,10 @@ while True:
             print("There's No Book Exist in Library to Display")   
             print("-------------------------------------------")
     #-----------------------------------------------------------
-    elif choice == 6: # Exit The System
+    elif choice == 6: # Know How Many Books Exist In Library
+        print(f"There's {bk.get_numberofbookexist()} book(s) in the library")
+    #-----------------------------------------------------------
+    elif choice == 7: # Exit The System
     #-----------------------------------------------------------
         print("--------------------")
         print("Saving Data.....")
