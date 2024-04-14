@@ -2,31 +2,37 @@ from prettytable import PrettyTable
 # -----------------------------------------------------------------------
 # Structure For Books ( New Data Type To Deal With Book Data)
 class book:
+    books = 0
     def __init__(self, id, book_name, author_name, copies):
         self.id = id
         self.book_name = book_name
         self.author_name = author_name
         self.copies = copies 
+        
+        book.books+=1
     def __str__(self):
         return f"{self.copies} , {self.id} , {self.book_name} , {self.author_name}"
+    def get_numberofbookexist(self):
+        return book.books
 # -----------------------------------------------------------------------
 # Functions |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 # -----------------------------------------------------------------------
 # Printing Screen ( Done )
-    def printscreen():
+    def printscreen(self):
         print("")
         print("Welcome To The Library")
-        print("----------------------")
+        print("------------------------------------")
         print("1 ) Add New Book")       
         print("2 ) Delete a Book")      
         print("3 ) Update a Book")      
         print("4 ) Check a Book")       
-        print("5 ) Display Books")       
-        print("6 ) Exit from system")    
-        print("----------------------") 
+        print("5 ) Display Books") 
+        print("6 ) Number of Books Exist In Library")  
+        print("7 ) Exit from system")    
+        print("------------------------------------") 
 # -----------------------------------------------------------------------
 #Add New Book ( Done ) ( Edit in case the book is exist )
-    def add_book(id,library):
+    def add_book(self,id,library):
         bookN = input("Enter Book Name : ")
         AuthotN = input("Enter Author Name : ")
         while True :
@@ -43,7 +49,7 @@ class book:
         print("")
 # -----------------------------------------------------------------------
 #Print All Books in Library ( Done )
-    def view_all(library):
+    def view_all(self,library):
         table = PrettyTable()
         table.field_names = ["Copies", "ID", "Name", "Author"]
 
@@ -53,14 +59,14 @@ class book:
         table.title = "Library Books"
         print(table)
 # -----------------------------------------------------------------------
-    def save_to_excel(library):
+    def save_to_excel(self,library):
         with open("library.xlsx", 'w') as file:
             file.write("Copies,ID,Name,Author\n")  # Write header
             for book in library:
                 file.write(f"{book.copies:^10},{book.id:^5},{book.book_name:^20},{book.author_name:^15}\n")  # Use ^ for center alignment
 # -----------------------------------------------------------------------
 # Delete Specific Book ( Done )
-    def delete_book(library): 
+    def delete_book(self,library): 
         while True:
             try : #Checking if input is integer
                 delete = int(input("Enter The ID : "))
@@ -81,14 +87,14 @@ class book:
             print("-------------------------")
 # -----------------------------------------------------------------------
 # Exit Screen ( Done )
-    def exit():
+    def exit(self):
         print("--------------------")
         print("System Closing")
         print("!...GOOD BYE...!")
         print("--------------------")
 # -----------------------------------------------------------------------
 # Check If Exist or not ( Done )
-    def checks(id,library):
+    def checks(self,id,library):
         exist = False
         for book in library:
             if book.id == id:
@@ -100,7 +106,7 @@ class book:
             return 0
 # -----------------------------------------------------------------------
 #Check if exists ( Done )
-    def check_book(id,library):
+    def check_book(self,id,library):
         exist = False
         index = 0
         copy = 0
@@ -122,7 +128,7 @@ class book:
             print("-------------------")      
 # -----------------------------------------------------------------------
 # Get Book Index ( Done )
-    def index(id,library):
+    def index(self,id,library):
         index = -1
         for book in library:
             index+=1
@@ -131,13 +137,13 @@ class book:
         return index
 # -----------------------------------------------------------------------
 # Save list of books to file
-    def save_to_file(library):
+    def save_to_file(self,library):
         with open("LibraryData.txt", 'w') as file:
             for book in library:
                 file.write(str(book) + '\n')
 # -----------------------------------------------------------------------
 # Load list of books from file
-    def load_from_file():
+    def load_from_file(self):
         class_instances = []
         try:
             with open("LibraryData.txt", 'r') as file:
@@ -156,7 +162,7 @@ class book:
             return []
 # -----------------------------------------------------------------------
 # Update Specific Book ( Done )
-    def update_book(place, library,Id = None):
+    def update_book(self,place, library,Id = None):
         if id == None:
             while True :
                 try: #Checking if input is integer or not
